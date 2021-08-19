@@ -32,8 +32,21 @@ recommended by Flax.
 
 """You also will need to set up the TPU for JAX in this notebook. This can be done by executing the following lines."""
 
-import jax.tools.colab_tpu
-jax.tools.colab_tpu.setup_tpu()
+# import jax.tools.colab_tpu
+# jax.tools.colab_tpu.setup_tpu()
+
+import jax
+import optax
+import flax
+import jax.numpy as jnp
+
+from flax.training import train_state
+from flax.training.common_utils import get_metrics, onehot, shard
+
+import numpy as np
+
+from tqdm.notebook import tqdm
+
 
 """If everything is set up correctly, the following command should return a list of 8 TPU devices."""
 
@@ -204,18 +217,6 @@ Now we will see how to power of Google's tensor processing unit (TPU) can be lev
 
 We need to import `jax`, `flax`, `optax`, `numpy` to define our training loop. Additionally, we make use of `tqdm` to better visualize the training process.
 """
-
-import jax
-import optax
-import flax
-import jax.numpy as jnp
-
-from flax.training import train_state
-from flax.training.common_utils import get_metrics, onehot, shard
-
-import numpy as np
-
-from tqdm.notebook import tqdm
 
 """At first, we define all relevant hyper-parameters for pretraining in this notebook:
 
